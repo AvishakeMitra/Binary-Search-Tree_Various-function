@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct node
+typedef struct node			/*Structure defination of a node of a Binary Search Tree*/   
 {
     int item;
     struct node *left;
@@ -9,11 +9,11 @@ typedef struct node
     
 }Node;
 
-Node* insert(Node *n,Node *t)
+Node* insert(Node *n,Node *t)			
 {
 	if(!t)
 	    return n;
-	if(n->item < t->item)
+	if(n->item < t->item)			
 	{
 		if(!t->left)
 		    t->left=n;
@@ -42,21 +42,21 @@ int inorder(Node *t)
     }
 }
 
-int countLeaves(Node *t)
+int countLeaves(Node *t)			/*count the total no fo leaves of a BST*/
 {
     if(!t) return 0;
     if(!t->left && !t->right) return 1;
     else return(countLeaves(t->left)+countLeaves(t->right));
 }
 
-int countNode(Node *t)
+int countNode(Node *t)				/*count the total no fo nodes of a BST*/
 {
     if(!t) return 0;
     else return(1+countNode(t->left)+countNode(t->right));
 }
 
-int treeHeight(Node *t)
-{   
+int treeHeight(Node *t)				/*Find the height of a BST*/
+{   						/*Maximum path length from leaf to the root*/
     int l,r;
     if(!t)return 0;
     if(!t->left && !t->right)return 0;
@@ -68,7 +68,7 @@ int treeHeight(Node *t)
     }
 }
 
-int fullNode(Node *t)
+int fullNode(Node *t)				/*Find the complete node have both left and right child*/		
 {
     if(!t) return 0;
     if(t->right && t->left)
@@ -76,7 +76,7 @@ int fullNode(Node *t)
     else return 0;
 }
 
-int searchKey(Node *t,int key)
+int searchKey(Node *t,int key)			/*Find the given key from the BST, time complexity will be O(n) for skewed tree*/
 {	
 	
     if(!t)return 0;
@@ -89,7 +89,7 @@ int searchKey(Node *t,int key)
 
 
 int arr[100];
-int inorder_sucessor(Node *t,int root_item)
+int inorder_sucessor(Node *t,int root_item)	/*Find the inorder suceesor*/				
 {
     static int i=0;
     if(t!=NULL)
@@ -103,7 +103,7 @@ int inorder_sucessor(Node *t,int root_item)
     }
 }
 
-int min(Node *t)
+int min(Node *t)				/*minimum element from a BST,it always present in the left most of the tree*/
 {
     if(!t)return 0;
     if(t->left==NULL) return t->item;
@@ -138,8 +138,8 @@ int main(void)
         	printf("Item found\n");
         else 
 	    	printf("Item not found\n");
-    printf("Min Node Value is the tree is : %d \n",min(tree));
-    printf("The INORDER SUCESSOR of THE ROOT NODE IS : %d \n",inorder_sucessor(tree,tree->item));
+        printf("Min Node Value is the tree is : %d \n",min(tree));
+        printf("The INORDER SUCESSOR of THE ROOT NODE IS : %d \n",inorder_sucessor(tree,tree->item));
   
   
 }
